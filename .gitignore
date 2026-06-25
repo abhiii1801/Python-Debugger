@@ -1,4 +1,4 @@
-Python
+# Python
 pycache/
 
 *.py[cod]
@@ -12,7 +12,7 @@ pycache/
 venv/
 
 *.egg-info/
-Node
+# Node
 node_modules/
 
 dist/
@@ -20,13 +20,13 @@ dist/
 .next/
 
 .nuxt/
-Environment files
+# Environment files
 .env.local
 
 .env.production
 
 .env.*.local
-Editor
+# Editor
 .vscode/
 
 .idea/
@@ -36,5 +36,5 @@ Editor
 *.swo
 
 .DS_Store
-Render / Vercel
+# Render / Vercel
 .vercel/

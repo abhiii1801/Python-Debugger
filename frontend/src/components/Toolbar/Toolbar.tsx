@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Play, Pause, SkipBack, SkipForward, RotateCcw,
-  Terminal, Zap, AlertCircle, Clock, PlaySquare, X
+  Zap, AlertCircle, Clock, PlaySquare, X
 } from 'lucide-react';
 import { useDebuggerStore } from '../../store/debuggerStore';
 

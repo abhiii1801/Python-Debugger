@@ -292,6 +292,20 @@ export function Toolbar() {
             />
           </button>
         </div>
+
+        <div className="w-px h-5 bg-border-subtle mx-1" />
+        <a
+          href="https://github.com/abhiii1801/Python-Debugger/tree/main/extension"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium border border-[#1E1E22] text-[#71717A] hover:text-[#E4E4E7] hover:border-[#7C6DFA] transition-all duration-150"
+          title="Add Tracer to Chrome"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+          </svg>
+          Get Extension
+        </a>
       </div>
 
       {/* Error Toast */}

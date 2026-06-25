@@ -98,6 +98,8 @@ export interface DebuggerState {
   setVariableColumns: (cols: 1 | 2) => void;
 
   // LeetCode actions
+  setLeetcodeMode: (val: boolean) => void;
+  setTestCasesFromExtension: (cases: Array<{params: Array<{name:string, value:string}>, expectedOutput: string}>) => void;
   toggleLeetcodeMode: () => void;
   dismissLeetcodeSuggestion: () => void;
   dismissNoParamsWarning: () => void;
@@ -278,6 +280,22 @@ export const useDebuggerStore = create<DebuggerState>((set, get) => ({
   setVariableColumns: (cols) => set({ variableColumns: cols }),
 
   // ── LeetCode actions ──────────────────────────────────────────────────────────
+
+  setLeetcodeMode: (val) => set({ isLeetcodeMode: val }),
+
+  setTestCasesFromExtension: (cases) => {
+    const mapped = cases.map(c => ({
+      id: crypto.randomUUID(),
+      params: c.params,
+      expectedOutput: c.expectedOutput || '',
+      actualOutput: null,
+      status: 'idle' as const,
+      frames: [],
+      astInfo: null,
+      executionTimeMs: 0,
+    }));
+    set({ testCases: mapped, activeTestCaseId: mapped[0]?.id ?? '' });
+  },
 
   toggleLeetcodeMode: () => {
     const { isLeetcodeMode, code, testCases } = get();

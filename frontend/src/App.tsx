@@ -2,7 +2,7 @@
 // The outer vertical split is done manually with flex so the Timeline
 // fixed-height strip can sit between the top and bottom resizable sections.
 import { Panel, Group, Separator } from 'react-resizable-panels';
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { Toolbar } from './components/Toolbar/Toolbar';
 import { EditorPanel } from './components/Editor/EditorPanel';
 import { VariablePanel } from './components/Variables/VariablePanel';
@@ -46,6 +46,39 @@ function useVerticalResize(initialTopPct: number) {
 function App() {
   const isLeetcodeMode = useDebuggerStore(s => s.isLeetcodeMode);
   const { topPct, containerRef, onDragStart } = useVerticalResize(63);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lcParam = params.get('lc');
+    
+    if (lcParam) {
+      try {
+        const decoded = JSON.parse(decodeURIComponent(escape(atob(lcParam))));
+        
+        if (decoded.code) {
+          useDebuggerStore.getState().setCode(decoded.code);
+        }
+        
+        if (decoded.leetcodeMode) {
+          useDebuggerStore.getState().setLeetcodeMode(true);
+        }
+        
+        if (decoded.testCases && decoded.testCases.length > 0) {
+          useDebuggerStore.getState().setTestCasesFromExtension(decoded.testCases);
+        }
+        
+        // Clean URL
+        window.history.replaceState({}, '', window.location.pathname);
+        
+        setTimeout(() => {
+          useDebuggerStore.getState().runCode();
+        }, 800);
+        
+      } catch (err) {
+        console.error('[Tracer] Failed to parse extension payload:', err);
+      }
+    }
+  }, []);
 
   return (
     <div className="flex flex-col h-screen bg-bg-base overflow-hidden">

@@ -1,5 +1,5 @@
 """
-main.py — FastAPI application for the Python Visual Debugger.
+main.py — FastAPI application for Tracer.
 
 Endpoints:
   POST /run  — Execute user Python code and return all execution frames.
@@ -18,7 +18,7 @@ from slowapi.errors import RateLimitExceeded
 from debugger.runner import run_code
 from debugger.sandbox import SandboxViolation
 
-app = FastAPI(title="Python Visual Debugger API", version="1.0.0")
+app = FastAPI(title="Tracer API", version="1.0.0")
 
 limiter = Limiter(key_func=get_remote_address)
 app.state.limiter = limiter
@@ -49,7 +49,7 @@ class RunRequest(BaseModel):
 
 @app.get("/health")
 async def health_check():
-    return {"status": "ok", "service": "pydebugger-backend"}
+    return {"status": "ok", "service": "tracer-backend"}
 
 
 @app.post("/run")

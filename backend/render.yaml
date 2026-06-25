@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: pydebugger-backend
+    name: tracer-backend
     runtime: python
     region: oregon
     plan: free
@@ -9,6 +9,6 @@ services:
     healthCheckPath: /health
     envVars:
       - key: ALLOWED_ORIGINS
-        value: https://pydebugger.vercel.app
+        value: https://tracer.vercel.app
       - key: PYTHON_VERSION
         value: 3.11.0

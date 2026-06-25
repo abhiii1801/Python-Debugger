@@ -42,7 +42,7 @@ export function EditorPanel() {
     });
 
     // Register Python language token colors
-    monacoInstance.editor.defineTheme('pydebugger-dark', {
+    monacoInstance.editor.defineTheme('tracer-dark', {
       base: 'vs-dark',
       inherit: true,
       rules: [
@@ -70,7 +70,7 @@ export function EditorPanel() {
         'scrollbarSlider.activeBackground': '#4A4A5488',
       },
     });
-    monacoInstance.editor.setTheme('pydebugger-dark');
+    monacoInstance.editor.setTheme('tracer-dark');
   }, []);
 
   // Update decorations whenever currentLine or breakpoints change

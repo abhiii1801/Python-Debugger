@@ -96,10 +96,8 @@ export function Toolbar() {
       <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border-subtle bg-bg-surface select-none flex-wrap">
         {/* Logo/Title */}
         <div className="flex items-center gap-2 mr-3">
-          <div className="w-6 h-6 rounded-sm bg-accent flex items-center justify-center">
-            <Terminal size={13} className="text-white" />
-          </div>
-          <span className="text-text-primary font-semibold text-sm font-ui">PyDebugger</span>
+          <img src="/logo.svg" alt="Tracer" className="w-7 h-7" />
+          <span className="font-semibold text-sm text-white tracking-tight">Tracer</span>
         </div>
 
         <div className="w-px h-5 bg-border-subtle mx-1" />

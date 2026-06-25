@@ -1,0 +1,12 @@
+{
+  "name": "Tracer - Visual Python Debugger",
+  "short_name": "Tracer",
+  "description": "Step-by-step visual Python debugger with heap, stack, and variable visualization",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D0D0F",
+  "theme_color": "#7C6DFA",
+  "icons": [
+    { "src": "/logo.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -36,8 +36,9 @@
     const btn = createTracerButton();
     btn.addEventListener('click', handleDebugClick);
     
-    // Insert AFTER the submit button
-    submitButton.parentNode.insertBefore(btn, submitButton.nextSibling);
+    // Insert AFTER the entire submit container group so it doesn't break the background/borders
+    const submitContainer = submitButton.closest('.group') || submitButton.parentElement;
+    submitContainer.parentNode.insertBefore(btn, submitContainer.nextSibling);
     
     injected = true;
     console.log('[Tracer] Button injected successfully');

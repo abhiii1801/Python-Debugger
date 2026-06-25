@@ -26,19 +26,18 @@
     // Don't inject twice
     if (document.getElementById('tracer-debug-btn')) return;
     
-    // Find the Run button using the data-e2e-locator attribute from LeetCode's HTML
-    const runButton = document.querySelector(
-      'button[data-e2e-locator="console-run-button"]'
+    // Find the Submit button using the data-e2e-locator attribute from LeetCode's HTML
+    const submitButton = document.querySelector(
+      'button[data-e2e-locator="console-submit-button"]'
     );
     
-    if (!runButton) return;
+    if (!submitButton) return;
     
     const btn = createTracerButton();
     btn.addEventListener('click', handleDebugClick);
     
-    // Insert BEFORE the run button's parent container
-    const runButtonContainer = runButton.closest('.group') || runButton.parentElement;
-    runButtonContainer.parentElement.insertBefore(btn, runButtonContainer);
+    // Insert AFTER the submit button
+    submitButton.parentNode.insertBefore(btn, submitButton.nextSibling);
     
     injected = true;
     console.log('[Tracer] Button injected successfully');
@@ -246,13 +245,13 @@
 
   function startObserver() {
     // LeetCode is a SPA — buttons render after JS loads
-    // Use MutationObserver to detect when the Run button appears
+    // Use MutationObserver to detect when the Submit button appears
     
     observer = new MutationObserver(() => {
-      const runBtn = document.querySelector(
-        'button[data-e2e-locator="console-run-button"]'
+      const submitBtn = document.querySelector(
+        'button[data-e2e-locator="console-submit-button"]'
       );
-      if (runBtn && !document.getElementById('tracer-debug-btn')) {
+      if (submitBtn && !document.getElementById('tracer-debug-btn')) {
         injectButton();
       }
     });

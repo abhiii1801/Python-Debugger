@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 12px;
+  padding: 0 16px;
   background: #7C6DFA;
   color: white;
   border: none;
@@ -13,8 +13,8 @@
   cursor: pointer;
   transition: all 150ms ease;
   white-space: nowrap;
-  height: 28px;
-  margin: 0 4px;
+  height: 32px;
+  margin-left: 8px;
   text-decoration: none;
   outline: none;
   vertical-align: middle;

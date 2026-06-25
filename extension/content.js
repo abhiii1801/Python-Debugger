@@ -178,7 +178,12 @@
     btn.disabled = true;
     
     try {
-      const code = extractCode();
+      let code = extractCode();
+      
+      if (code) {
+        // Replace non-breaking spaces (U+00A0) which LeetCode uses for indentation
+        code = code.replace(/\u00A0/g, ' ');
+      }
       
       if (!code || code.trim().length < 5) {
         showToast('Could not extract code. Make sure you are on a problem page with code written.', 'error');

@@ -318,9 +318,16 @@ export function Toolbar() {
               exit={{ opacity: 0, height: 0 }}
               className="w-full bg-[#FBBF24]/10 border-b border-[#FBBF24]/50 text-[#FBBF24] overflow-hidden"
             >
-              <div className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium">
-                <AlertCircle size={16} />
-                {toastError}
+              <div className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium relative">
+                <AlertCircle size={16} className="shrink-0" />
+                <span>{toastError}</span>
+                <button 
+                  onClick={() => setToastError(null)}
+                  className="ml-2 hover:bg-[#FBBF24]/20 p-1 rounded-full transition-colors flex-shrink-0"
+                  title="Close"
+                >
+                  <X size={14} />
+                </button>
               </div>
             </motion.div>
           )}

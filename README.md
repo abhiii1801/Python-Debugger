@@ -33,22 +33,24 @@ Tracer is packed with features designed to give you absolute control and visibil
 ### 1. Visual Execution Timeline
 Rather than just running your code and seeing the final output, Tracer records the entire lifecycle. Use the intuitive playback controls or timeline slider to step forwards and backwards through your code's execution. Watch as the active line of code highlights in real-time, corresponding to the exact state of your program at that moment.
 
-![Execution Timeline Placeholder](https://via.placeholder.com/1000x200.png?text=Screenshot:+Execution+Timeline+Controls)
+<img width="1871" height="1156" alt="Screenshot From 2026-06-26 10-13-30" src="https://github.com/user-attachments/assets/5e8a3980-a467-4c5c-bad6-11698c80ef3c" />
+
 
 ### 2. Live Variables & Scope Tracking
 Stop guessing what value a variable holds! The **Variables Panel** updates dynamically as you scrub through the timeline. It clearly separates variables by scope (Local vs. Global), allowing you to trace exactly when and where a value mutates.
 
-![Variables Panel Placeholder](https://via.placeholder.com/1000x400.png?text=Screenshot:+Live+Variables+Panel)
+<img width="1256" height="747" alt="Screenshot From 2026-06-26 10-14-25" src="https://github.com/user-attachments/assets/45639afa-b6e1-45a3-affb-b5add76bf13c" />
 
-### 3. Interactive Call Stack
-Recursive functions are notoriously hard to trace. Tracer's **Call Stack Panel** visually stacks your function calls. You can easily monitor the depth of your recursion, see exactly which function context is currently active, and understand the flow of parameters and return values.
-
-![Call Stack Placeholder](https://via.placeholder.com/1000x300.png?text=Screenshot:+Call+Stack+Tracking)
-
-### 4. Visual Heap Memory (Object References)
+### 3. Visual Heap Memory (Object References)
 Understanding object references, pointers, and complex data structures (like Linked Lists or Trees) is a common hurdle. Tracer includes a specialized **Heap View** powered by interactive node graphs. It visually maps out how variables reference objects in memory, making it trivial to spot circular references or dangling pointers.
 
-![Heap View Placeholder](https://via.placeholder.com/1000x500.png?text=Screenshot:+Interactive+Heap+View)
+<img width="1466" height="826" alt="Screenshot From 2026-06-26 10-15-03" src="https://github.com/user-attachments/assets/dd52e427-e247-4bbe-9b93-fb2866c395d3" />
+
+### 4. Interactive Call Stack
+Recursive functions are notoriously hard to trace. Tracer's **Call Stack Panel** visually stacks your function calls. You can easily monitor the depth of your recursion, see exactly which function context is currently active, and understand the flow of parameters and return values.
+
+<img width="1864" height="937" alt="Screenshot From 2026-06-26 10-17-02" src="https://github.com/user-attachments/assets/40551d39-2e7d-4d70-afa7-b751a12cba22" />
+
 
 ### 5. Seamless LeetCode Integration (Chrome Extension)
 Tired of failing LeetCode test cases and not knowing why? We built a dedicated Chrome Extension specifically for algorithmic prep. 
@@ -57,7 +59,8 @@ The extension injects a native-looking **"Debug" button** right into the LeetCod
 
 👉 **[Read the Extension Setup Guide Here](./extension/README.md)**
 
-![LeetCode Extension Placeholder](https://via.placeholder.com/1000x400.png?text=Screenshot:+LeetCode+Debug+Button+Injection)
+<img width="1268" height="196" alt="Screenshot From 2026-06-26 10-18-33" src="https://github.com/user-attachments/assets/d4a0d30f-1bcc-41ee-85d1-23f6d938dd78" />
+
 
 ---
 

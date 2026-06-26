@@ -208,7 +208,7 @@
       
       // Encode payload as base64 URL param
       const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-      const tracerUrl = `${TRACER_URL}?lc=${encoded}`;
+      const tracerUrl = `${TRACER_URL}?lc=${encodeURIComponent(encoded)}`;
       
       // Open Tracer in a new tab
       window.open(tracerUrl, '_blank');

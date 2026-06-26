@@ -1,48 +1,110 @@
-# Tracer
+# Tracer 🔍
 
-A Visual Python Debugger with step-by-step execution visualization.
+<div align="center">
+  <p><strong>A highly interactive Visual Python Debugger offering step-by-step execution tracking and seamless LeetCode integration.</strong></p>
+  
+  <p>
+    <a href="https://tracer-debugger.vercel.app/" target="_blank"><strong>🌐 Try the Live App</strong></a> •
+    <a href="./extension/README.md"><strong>🧩 Get the Chrome Extension</strong></a>
+  </p>
+</div>
 
-## Local Development
+## 🎥 Demo Video
+
+<!-- Add your demo video link or embed below -->
+> **[Watch the Tracer Demo Video Here](#)** *(Demo video coming soon)*
+
+---
+
+## 🌟 Overview
+
+Debugging complex algorithms, nested loops, and recursive functions can be incredibly overwhelming. Standard `print()` statements are tedious, and command-line debuggers can be difficult to visualize. 
+
+**Tracer** bridges this gap by providing an intuitive, web-based visual debugger. It sandboxes your Python code execution on the backend, meticulously tracking the state of your variables, the call stack, and memory structures at every single step. This execution timeline is then passed to a rich, React-based frontend where you can traverse the execution history forward and backward, allowing you to see exactly what your code is doing under the hood.
+
+Whether you're debugging intricate algorithms, learning Python data structures, or practicing for technical interviews, Tracer offers an unparalleled, transparent view of your code's lifecycle.
+
+---
+
+## ✨ Features Deep Dive
+
+Tracer is packed with features designed to give you absolute control and visibility over your code's execution.
+
+### 1. Visual Execution Timeline
+Rather than just running your code and seeing the final output, Tracer records the entire lifecycle. Use the intuitive playback controls or timeline slider to step forwards and backwards through your code's execution. Watch as the active line of code highlights in real-time, corresponding to the exact state of your program at that moment.
+
+![Execution Timeline Placeholder](https://via.placeholder.com/1000x200.png?text=Screenshot:+Execution+Timeline+Controls)
+
+### 2. Live Variables & Scope Tracking
+Stop guessing what value a variable holds! The **Variables Panel** updates dynamically as you scrub through the timeline. It clearly separates variables by scope (Local vs. Global), allowing you to trace exactly when and where a value mutates.
+
+![Variables Panel Placeholder](https://via.placeholder.com/1000x400.png?text=Screenshot:+Live+Variables+Panel)
+
+### 3. Interactive Call Stack
+Recursive functions are notoriously hard to trace. Tracer's **Call Stack Panel** visually stacks your function calls. You can easily monitor the depth of your recursion, see exactly which function context is currently active, and understand the flow of parameters and return values.
+
+![Call Stack Placeholder](https://via.placeholder.com/1000x300.png?text=Screenshot:+Call+Stack+Tracking)
+
+### 4. Visual Heap Memory (Object References)
+Understanding object references, pointers, and complex data structures (like Linked Lists or Trees) is a common hurdle. Tracer includes a specialized **Heap View** powered by interactive node graphs. It visually maps out how variables reference objects in memory, making it trivial to spot circular references or dangling pointers.
+
+![Heap View Placeholder](https://via.placeholder.com/1000x500.png?text=Screenshot:+Interactive+Heap+View)
+
+### 5. Seamless LeetCode Integration (Chrome Extension)
+Tired of failing LeetCode test cases and not knowing why? We built a dedicated Chrome Extension specifically for algorithmic prep. 
+
+The extension injects a native-looking **"Debug" button** right into the LeetCode UI. With a single click, it extracts your code, detects your language, captures your active test cases, and automatically transports you into a fully populated Tracer session. 
+
+👉 **[Read the Extension Setup Guide Here](./extension/README.md)**
+
+![LeetCode Extension Placeholder](https://via.placeholder.com/1000x400.png?text=Screenshot:+LeetCode+Debug+Button+Injection)
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+Tracer is built with a modern, high-performance web stack to ensure smooth tracing even for complex scripts.
+
+### Frontend
+- **React & TypeScript**: For a robust, type-safe user interface.
+- **Vite**: Ultra-fast frontend build tooling.
+- **TailwindCSS**: For sleek, responsive, and maintainable styling.
+- **Monaco Editor**: Powering the core code editing experience (the same engine behind VS Code).
+- **React Flow**: Rendering the interactive, node-based Heap View.
+- **react-resizable-panels**: Providing a customizable workspace layout.
 
 ### Backend
+- **FastAPI**: A modern, high-performance Python web framework handling execution requests.
+- **Python `sys.settrace`**: The core engine. We utilize Python's native tracing API to hook into the execution and capture frame states securely in a sandboxed environment.
+
+### Extension
+- **Manifest V3**: Using the latest, most secure standard for Chrome Extensions.
+- **Content Scripts**: To intelligently parse the LeetCode DOM and extract Monaco editor states.
+
+---
+
+## 🚀 Local Development
+
+If you want to run the project locally or contribute, follow these steps:
+
+### 1. Backend Setup
+The backend requires Python 3.9+.
 ```bash
 cd backend
 pip install -r requirements.txt
+# Run the FastAPI server on port 8000
 uvicorn main:app --reload --port 8000
 ```
 
-### Frontend
+### 2. Frontend Setup
+The frontend requires Node.js (v18+ recommended).
 ```bash
 cd frontend
 cp .env.example .env.local
+# Install dependencies
 npm install
+# Start the Vite development server
 npm run dev
 ```
 
-## Deployment
-
-### Backend (Render)
-1. Go to render.com → New Web Service
-2. Connect your GitHub repository
-3. Set root directory to `backend`
-4. Render auto-detects render.yaml settings
-5. After deploy, copy your Render URL (e.g. https://tracer-backend.onrender.com)
-
-### Frontend (Vercel)
-1. Go to vercel.com → New Project
-2. Connect your GitHub repository
-3. Set root directory to `frontend`
-4. Add environment variable:
-   - Key: VITE_API_URL
-   - Value: https://tracer-backend.onrender.com  ← your Render URL
-5. Deploy
-
-### After Both Are Deployed
-Update backend ALLOWED_ORIGINS on Render:
-- Go to Render dashboard → your service → Environment
-- Set ALLOWED_ORIGINS to your Vercel URL (e.g. https://tracer.vercel.app)
-- Render will auto-redeploy
-
-## Tech Stack
-- Frontend: React + TypeScript + Vite + TailwindCSS + Monaco Editor + React Flow
-- Backend: FastAPI + Python sys.settrace
+> **Note:** By default, the local frontend expects the local backend to be running on `http://localhost:8000`.

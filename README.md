@@ -1,4 +1,4 @@
-# Tracer 🔍
+# Tracer
 
 <div align="center">
   <p><strong>A highly interactive Visual Python Debugger offering step-by-step execution tracking and seamless LeetCode integration.</strong></p>

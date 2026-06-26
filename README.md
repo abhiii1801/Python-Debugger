@@ -11,8 +11,10 @@
 
 ## 🎥 Demo Video
 
-<!-- Add your demo video link or embed below -->
-> **[Watch the Tracer Demo Video Here](#)** *(Demo video coming soon)*
+<video width="100%" autoplay loop muted playsinline>
+  <source src="./misc/Demo%20Video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 

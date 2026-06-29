@@ -11,12 +11,13 @@
 
 ## 🎥 Demo Video
 
-<video width="100%" autoplay loop muted playsinline>
-  <source src="./misc/Demo%20Video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/daf9b826-0c2b-4b90-9911-fc165702d8e2
 
 ---
+
+
+
+
 
 ## 🌟 Overview
 

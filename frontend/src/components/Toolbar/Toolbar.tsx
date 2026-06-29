@@ -6,6 +6,7 @@ import {
   Zap, AlertCircle, Clock, PlaySquare, X
 } from 'lucide-react';
 import { useDebuggerStore } from '../../store/debuggerStore';
+import { checkHealth } from '../../api/debuggerApi';
 
 /** Warning dialog shown when LeetCode mode Run is clicked with no params filled */
 function NoParamsWarning({ onClose }: { onClose: () => void }) {
@@ -53,6 +54,22 @@ function NoParamsWarning({ onClose }: { onClose: () => void }) {
 
 export function Toolbar() {
   const [toastError, setToastError] = useState<string | null>(null);
+  const [isBackendActive, setIsBackendActive] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    const poll = async () => {
+      const active = await checkHealth();
+      if (mounted) setIsBackendActive(active);
+    };
+    poll();
+    const interval = setInterval(poll, 5000);
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
+  }, []);
+
   const {
     frames,
     currentFrameIndex,
@@ -110,8 +127,8 @@ export function Toolbar() {
               whileTap={{ scale: 0.95 }}
               className={`btn ${isLoading ? 'btn-ghost' : 'btn-primary'}`}
               onClick={runActiveTestCase}
-              disabled={isLoading}
-              title="Run the active test case"
+              disabled={isLoading || !isBackendActive}
+              title={!isBackendActive ? 'Server is waking up...' : 'Run the active test case'}
             >
               {isLoading ? (
                 <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
@@ -128,8 +145,8 @@ export function Toolbar() {
               whileTap={{ scale: 0.95 }}
               className="btn btn-ghost"
               onClick={() => runAllTestCases()}
-              disabled={isLoading}
-              title="Run all test cases sequentially"
+              disabled={isLoading || !isBackendActive}
+              title={!isBackendActive ? 'Server is waking up...' : 'Run all test cases sequentially'}
             >
               <PlaySquare size={14} />
               Run All
@@ -141,8 +158,8 @@ export function Toolbar() {
             whileTap={{ scale: 0.95 }}
             className={`btn ${isLoading ? 'btn-ghost' : 'btn-primary'}`}
             onClick={() => runCode()}
-            disabled={isLoading}
-            title="Run code (executes and loads all frames)"
+            disabled={isLoading || !isBackendActive}
+            title={!isBackendActive ? 'Server is waking up...' : 'Run code (executes and loads all frames)'}
           >
             {isLoading ? (
               <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
@@ -294,6 +311,18 @@ export function Toolbar() {
         </div>
 
         <div className="w-px h-5 bg-border-subtle mx-1" />
+
+        {/* Backend Status Tag */}
+        <div 
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-bg-elevated border border-border-muted text-xs font-medium cursor-help" 
+          title={isBackendActive ? "Backend service is active and ready" : "Backend service is waking up from sleep"}
+        >
+          <div className={`w-2 h-2 rounded-full ${isBackendActive ? 'bg-success shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'bg-warning shadow-[0_0_8px_rgba(251,191,36,0.6)] animate-pulse'}`} />
+          <span className={isBackendActive ? 'text-success' : 'text-warning'}>
+            {isBackendActive ? 'Service Active' : 'Waking...'}
+          </span>
+        </div>
+
         <a
           href="https://github.com/abhiii1801/Python-Debugger/tree/main/extension"
           target="_blank"

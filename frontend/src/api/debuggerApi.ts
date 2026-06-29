@@ -4,6 +4,15 @@ import type { RunResponse } from '../types/debugger';
 
 const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
+export async function checkHealth(): Promise<boolean> {
+  try {
+    const res = await axios.get(`${BASE}/health`, { timeout: 5000 });
+    return res.status === 200;
+  } catch {
+    return false;
+  }
+}
+
 export async function runCode(code: string): Promise<RunResponse> {
   try {
     const controller = new AbortController();
